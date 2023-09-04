@@ -112,7 +112,6 @@ p: // Waypoint
     }
     //          If ' read text.py ' without parenthesis
     else if (s[0] == 'r' && s[1] == 'e' && s[2] == 'a' && s[3] == 'd' && stringsize > 5 && s[stringsize - 1] != ')') {
-        filename = "";
         for (int i = 5; i < stringsize; i++)
             filename.push_back(s[i]);
         userRead(ITF, LA, EE, IP);
