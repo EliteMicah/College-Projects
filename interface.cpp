@@ -119,7 +119,6 @@ p: // Waypoint
     }
     //          If ' read(text.py) ' with parenthesis
     else if (s[0] == 'r' && s[1] == 'e' && s[2] == 'a' && s[3] == 'd' && s[4] == '(' && s[stringsize - 1] == ')') {
-        filename = "";
         for (int i = 5; i < stringsize - 1; i++)
             filename.push_back(s[i]);
         userRead(ITF, LA, EE, IP);
@@ -179,7 +178,7 @@ p: // Waypoint
         if (ITF.programCode.empty())
             cout << "Please use the read() command first" << endl;
         else
-            LA.getTokens(ITF, LA, EE, IP);
+            IP.interpretLine(ITF, LA, EE, IP);
         goto p;
     }
 
@@ -385,7 +384,10 @@ void Interface::userRead(Interface& ITF, lexicalAnalyzer& LA, expEvaluator& EE, 
         if (!ifile)
             break;
     }
+    ITF.readmode = true;
+    LA.getTokens(ITF, LA, EE, IP);
     cout << "Read complete" << endl;
+    ITF.readmode = false;
 
     ifile.close();
 }
